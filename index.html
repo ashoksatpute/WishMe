@@ -3,20 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birthday Surprise</title>
+    <title>Birthday 3D Card</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="container">
-    <button id="birthdayButton" class="btn animate-pulse">Click Here!</button>
-    <h1 id="message" class="hidden">Happy Birthday! 🎉</h1>
-    <canvas id="confettiCanvas"></canvas>
-    <canvas id="fireworksCanvas"></canvas>
+<div class="scene">
+    <div id="card" class="card">
+        <div class="card__face card__face--front">
+            <h2>Click to Open</h2>
+        </div>
+        <div class="card__face card__face--back">
+            <h1>Happy Birthday! 🎉</h1>
+            <p>Wishing you all the best on your special day!</p>
+        </div>
+    </div>
 </div>
+<div id="balloonsContainer"></div>
 
-<audio id="birthdaySong" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
-<script src="confetti.js"></script>
-<script src="fireworks.js"></script>
+<audio id="popSound" src="https://www.soundjay.com/button/sounds/button-16.mp3" preload="auto"></audio>
+
 <script src="script.js"></script>
 </body>
 </html>
