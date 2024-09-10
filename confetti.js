@@ -1,5 +1,5 @@
 const confettiCanvas = document.getElementById('confettiCanvas');
-const ctx = confettiCanvas.getContext('2d');
+const confettiCtx = confettiCanvas.getContext('2d');
 confettiCanvas.width = window.innerWidth;
 confettiCanvas.height = window.innerHeight;
 
@@ -12,37 +12,42 @@ class Confetti {
         this.y = Math.random() * confettiCanvas.height - confettiCanvas.height;
         this.size = Math.random() * 10 + 5;
         this.speed = Math.random() * 3 + 2;
-        this.color = colors[Math.floor(Math.random() * colors.length)];
         this.angle = Math.random() * 360;
+        this.spin = Math.random() * 5 - 2.5;
+        this.color = colors[Math.floor(Math.random() * colors.length)];
     }
 
     update() {
         this.y += this.speed;
-        this.angle += this.speed;
+        this.angle += this.spin;
         if (this.y > confettiCanvas.height) {
             this.y = 0 - this.size;
         }
     }
 
     draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-        ctx.closePath();
+        confettiCtx.save();
+        confettiCtx.translate(this.x, this.y);
+        confettiCtx.rotate(this.angle * Math.PI / 180);
+        confettiCtx.beginPath();
+        confettiCtx.arc(0, 0, this.size, 0, Math.PI * 2);
+        confettiCtx.fillStyle = this.color;
+        confettiCtx.fill();
+        confettiCtx.closePath();
+        confettiCtx.restore();
     }
 }
 
 function startConfetti() {
     confettiArray = [];
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 200; i++) {
         confettiArray.push(new Confetti());
     }
     animateConfetti();
 }
 
 function animateConfetti() {
-    ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+    confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
     confettiArray.forEach((confetti) => {
         confetti.update();
         confetti.draw();

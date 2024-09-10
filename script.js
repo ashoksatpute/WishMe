@@ -11,6 +11,7 @@ button.addEventListener('click', () => {
     // Play sound
     birthdaySong.play();
 
-    // Start confetti
+    // Start confetti and fireworks
     startConfetti();
+    startFireworks();
 });
